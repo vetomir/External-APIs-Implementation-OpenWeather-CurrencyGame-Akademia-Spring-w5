@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/awsm.css/dist/awsm_theme_mischka.min.css">
+    <link href="../static/style.css" th:href="@{/style.css}" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akademia Spring : Jokes</title>
+</head>
+<body>
+<main>
+    <fieldset >
+        <legend>Ultimate funny Żart Api</legend>
+        <!--/*@thymesVar id="groups" type="java.util.List<pl.gregorymartin.http_apis.JokesApi.model.Joke>"*/-->
+        <form action="#" method="post" th:action="@{/jokes}" th:object="${joke}">
+            <p>
+                <button class="TextCenterBold" type="submit">this.RandomŻartShowMe()</button>
+            </p>
+        </form>
+        <!--/*@thymesVar id="message" type="java.lang.String"*/-->
+        <h1 th:if="${message != null}" th:text="${message}"></h1>
+        <div class="Flex">
+            <!--/*@thymesVar id="groups" type="java.util.List<pl.gregorymartin.http_apis.JokesApi.model.Joke>"*/-->
+            <dl th:each="joke : ${allJokes}" class="Bd P(10px)">
+                <dt class="C(gray)" th:text="${joke.getSetup()}">...</dt>
+                <dd class="Bdc(red)" th:text="${joke.getPunchline()}">...</dd>
+            </dl>
+        </div>
+    </fieldset>
+
+</main>
+</body>
+</html>

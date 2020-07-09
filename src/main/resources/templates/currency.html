@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/awsm.css/dist/awsm_theme_mischka.min.css">
+    <link href="../static/style.css" th:href="@{/style.css}" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akademia Spring: Currency Game</title>
+</head>
+<body>
+<main>
+    <fieldset>
+
+        <legend>Wytypuj walutę</legend>
+        <!--/*@thymesVar id="message" type="java.lang.Double"*/-->
+        <form method="post" th:action="@{/currency}">
+            <label>Opis
+                <input type="number" step="0.01" th:value="${base}" name="base"/>
+                <button class="TextCenterBold" type="submit">Sprawdź</button>
+            </label>
+
+        </form>
+    </fieldset>
+        <!--/*@thymesVar id="message" type="java.lang.String"*/-->
+        <h1 class="TextCenterBold" th:if="${message != null}" th:text="${message}"></h1>
+
+
+
+</main>
+</body>
+</html>

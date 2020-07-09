@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/awsm.css/dist/awsm_theme_mischka.min.css">
+    <link href="../static/style.css" th:href="@{/style.css}" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akademia Spring: Weather Api</title>
+</head>
+<body>
+<main>
+    <style>
+        .Clouds{
+            background: url("https://www.princeton.edu/sites/default/files/styles/half_2x/public/images/2018/01/clouds-19.jpg") center #ddd;
+            backgronud-size: cover;
+            width: 100%;
+            height: 300px;
+            display: block;
+        }
+        .Clear{
+            background: url("https://r.dcs.redcdn.pl/http/o2/redefine/cp/vf/vfrijrsrd79sy1bcz39o6t4ksx4gxsry.jpg") center #ddd;
+            backgronud-size: cover;
+            width: 100%;
+            height: 300px;
+            display: block;
+        }
+        .Rain{
+            background: url("https://s7d2.scene7.com/is/image/TWCNews/rain_showers_jpg") center #ddd;
+            backgronud-size: cover;
+            width: 100%;
+            height: 300px;
+            display: block;
+        }
+        .Snow{
+            background: url("https://www.wadowice24.pl/zdjecia/niestety-mroz-i-snieg-zblizaja-sie-do-nas-wielkimi-krokami_7eea3cd8be9c1b8e0ccdf1290cee0e8f_XL.jpg") center #ddd;
+            backgronud-size: cover;
+            width: 100%;
+            height: 300px;
+            display: block;
+        }
+    </style>
+    <fieldset >
+
+        <legend>Sprawdź Pogodę</legend>
+        <!--/*@thymesVar id="message" type="java.lang.String"*/-->
+        <form method="post" th:action="@{/weather}">
+            <label>Opis
+                <input type="text" th:value="${city}" name="city"/>
+                <button class="TextCenterBold" type="submit">Szukaj</button>
+            </label>
+        </form>
+        <!--/*@thymesVar id="message" type="java.lang.String"*/-->
+        <h1 th:if="${message != null}" th:text="${message}"></h1>
+            <!--/*@thymesVar id="groups" type="java.util.List<pl.gregorymartin.http_apis.WeatherApi.model.WeatherViewModel>"*/-->
+            <dl th:if="${forecast != null}" th:object="${forecast}" class="Bd P(10px)">
+                <li class="C(gray)" th:text="${forecast.getDescription()}"></li>
+                <div th:class="${forecast.getMainType()}"></div>
+            </dl>
+
+    </fieldset>
+
+</main>
+</body>
+</html>
